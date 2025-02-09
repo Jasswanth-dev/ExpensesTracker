@@ -1,0 +1,62 @@
+.expenses{
+    color: red;
+}
+
+.income{
+    color: lightgreen;
+}
+
+.budget-list-item{
+    width: 100%;
+    padding: 5px;
+    background-color: #121212;
+    height: 50px;
+    border: 1px solid grey;
+    border-radius: 5px;
+    
+}
+
+.input-element{
+    border: 0;
+    height: 100%;
+    background-color: #121212;
+    outline: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+.splitter{
+    background-color: grey;
+    width: 1px;
+    height: 100%;
+    margin-right: 10px;
+    margin-left: 3px;
+    padding: 0;
+}
+
+.date{
+    color: orange;
+}
+
+.label-element{
+    color: Grey;
+    margin: 0;
+    padding: 0;
+}
+
+
+
+.amount-container{
+    width: 200px;
+}
+
+.delete-btn{
+    color: white;
+    border: 0;
+}
+
+@media (min-width: 768px){
+    .date-container{
+        width: 200px;
+    }
+}
