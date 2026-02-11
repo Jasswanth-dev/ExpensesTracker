@@ -20,7 +20,18 @@
   background-color: var(--primary-color);
 }
 
-.add-buttons, .categories-header {
+.category-detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.add-buttons {
+  display: flex;
+}
+
+.categories-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -32,6 +43,7 @@
   color: var(--text-color);
   border: none;
   padding: 10px 15px;
+  margin-left: 10px;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -59,3 +71,10 @@
 .menu-btn, .menu-item {
     outline: none;
 }
+
+.back-btn {
+    background-color: transparent;
+    padding: 5px;
+    margin-left: 0;
+}
+

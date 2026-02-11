@@ -1,8 +1,8 @@
 import "./index.css"
 
-const Header = () => (
+const Header = ({ categoryName }) => (
     <header className="expenses-navbar">
-        <h4 className="text-center">Budget</h4>
+        <h4 className="text-center">{categoryName}</h4>
     </header>
 )
 

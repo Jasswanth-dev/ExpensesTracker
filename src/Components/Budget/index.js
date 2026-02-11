@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import Footer from "../Footer";
 import BudgetItem from "../BudgetItem";
+import { IoMdArrowBack } from "react-icons/io";
 import { FiMoreVertical } from "react-icons/fi";
 import { MdOutlineDelete } from "react-icons/md";
 import ConfirmationPopup from "../ConfirmationPopup";
@@ -10,15 +11,7 @@ import "./index.css";
 
 const STORAGE_KEY = 'expensesTrackerData';
 
-const Budget = () => {
-    const [categories, setCategories] = useState(() => {
-        const storedData = localStorage.getItem(STORAGE_KEY);
-        return storedData ? JSON.parse(storedData) : [
-            { id: uuidv4(), name: 'Income', items: [], isDefault: true },
-            { id: uuidv4(), name: 'Expenses', items: [], isDefault: true }
-        ];
-    });
-    const [selectedCategoryId, setSelectedCategoryId] = useState(null);
+const Budget = ({ categories, setCategories, selectedCategoryId, setSelectedCategoryId }) => {
     const [income, setIncome] = useState(0);
     const [expenses, setExpenses] = useState(0);
     const [balance, setBalance] = useState(0);
@@ -33,11 +26,7 @@ const Budget = () => {
     };
 
 
-    // Effect to save data to localStorage whenever categories change
-    useEffect(() => {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(categories));
-        calculateFinancialSummary(); // Recalculate financial summary when categories change
-    }, [categories]);
+
 
     // Initial calculation when component mounts or categories are loaded
     useEffect(() => {
@@ -171,32 +160,27 @@ const Budget = () => {
         setCategoryToDelete(null);
     };
 
-    const handleSelectCategory = (id) => {
-        setSelectedCategoryId(id);
-    };
+
 
     const renderCategoriesView = () => (
         <div>
             <div className="categories-header">
-                <h2>Categories</h2>
                 <button className="custom-btn-style" onClick={() => handleAddCategory(prompt("Enter category name:"))}>Add New Category</button>
             </div>
             <ul className="categories-list">
                 {categories.map(cat => (
-                    <li key={cat.id} onClick={() => handleSelectCategory(cat.id)}>
+                    <li key={cat.id} onClick={() => setSelectedCategoryId(cat.id)}>
                         <span>{cat.name} ({cat.items.length})</span>
-                        {!cat.isDefault && (
-                            <div className="menu-container">
-                                <button type="button" className="menu-btn" onClick={(e) => { e.stopPropagation(); toggleCategoryMenu(cat.id); }}><FiMoreVertical /></button>
-                                {showCategoryMenu === cat.id && (
-                                    <div className="menu">
-                                        <button type="button" className="menu-item" onClick={(e) => { e.stopPropagation(); handleDeleteCategory(cat.id); }}>
-                                            <MdOutlineDelete /> Delete
-                                        </button>
-                                    </div>
-                                )}
-                            </div>
-                        )}
+                        <div className="menu-container">
+                            <button type="button" className="menu-btn" onClick={(e) => { e.stopPropagation(); toggleCategoryMenu(cat.id); }}><FiMoreVertical /></button>
+                            {showCategoryMenu === cat.id && (
+                                <div className="menu">
+                                    <button type="button" className="menu-item" onClick={(e) => { e.stopPropagation(); handleDeleteCategory(cat.id); }}>
+                                        <MdOutlineDelete /> Delete
+                                    </button>
+                                </div>
+                            )}
+                        </div>
                     </li>
                 ))}
             </ul>
@@ -209,16 +193,15 @@ const Budget = () => {
             return (
                 <div>
                     <p>Category not found.</p>
-                    <button className="custom-btn-style" onClick={() => setSelectedCategoryId(null)}>Back to Categories</button>
+                    <button className="custom-btn-style back-btn" onClick={() => setSelectedCategoryId(null)}><IoMdArrowBack /></button>
                 </div>
             );
         }
 
         return (
             <div>
-                <button className="custom-btn-style" onClick={() => setSelectedCategoryId(null)}>Back to Categories</button>
-                <div className="categories-header">
-                    <h2>{currentCategory.name}</h2>
+                <div className="category-detail-header">
+                    <button className="custom-btn-style back-btn" onClick={() => setSelectedCategoryId(null)}><IoMdArrowBack /></button>
                     <div className="add-buttons">
                         <button className="custom-btn-style" onClick={() => handleAddItem("income", selectedCategoryId)}>Add Income</button>
                         <button className="custom-btn-style" onClick={() => handleAddItem("expense", selectedCategoryId)}>Add Expense</button>
