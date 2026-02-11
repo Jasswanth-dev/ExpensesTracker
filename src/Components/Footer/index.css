@@ -1,12 +1,28 @@
-.footer{
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    background-color: #080707;
-    padding: 10px;
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--surface-color);
+  padding: 20px;
+  border-top: 1px solid var(--primary-color);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
-.calculation-container{
-    color: white;
+.calculation-container {
+  text-align: center;
+}
+
+.calculation-container h5 {
+  margin: 0 0 5px 0;
+  font-size: 1rem;
+  color: var(--text-color-secondary);
+}
+
+.calculation-container p {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: bold;
 }

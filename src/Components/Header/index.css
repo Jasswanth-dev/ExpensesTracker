@@ -1,5 +1,13 @@
-.expenses-navbar{
-    padding: 5px;
-    background-color: #0c0d0c;
-    color: white;
+.expenses-navbar {
+  padding: 20px;
+  background-color: var(--surface-color);
+  color: var(--text-color);
+  text-align: center;
+  border-bottom: 2px solid var(--primary-color);
+  margin-bottom: 20px;
+}
+
+.expenses-navbar h4 {
+  margin: 0;
+  font-size: 1.5rem;
 }

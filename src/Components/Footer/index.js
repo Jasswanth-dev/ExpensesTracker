@@ -1,31 +1,22 @@
 import "./index.css"
 
 const Footer = (props) => {
-    const {handleAddExpense, handleAddIncome, totalIncome, totalExpenses, balance} = props
+    const {totalIncome, totalExpenses, balance} = props
     return (
-    <footer className="footer">
-        <div className="expenses-btns text-center d-flex justify-content-around">
-            <button type="button" onClick={() => handleAddIncome()} className="btn btn-outline-success custom-btn-style w-50">
-                Add Income
-            </button>
-            <button type="button" onClick={() => handleAddExpense()} className="btn btn-outline-danger custom-btn-style w-50">
-                Add Expenses
-            </button>
-        </div>
-        <div className="d-flex justify-content-around calculation-container">
-            <div className="m-1">
-                <p className="m-0">Income: <span className="income">{totalIncome}</span></p>
-                <p className="m-0">Expenses: <span className="expenses">{totalExpenses}</span></p>
+        <footer className="footer">
+            <div className="calculation-container">
+                <h5>Income</h5>
+                <p className="income">+{totalIncome}</p>
             </div>
-            <hr/>
-            <div className="m-1">
-                <p className="m-0">Balance</p>
-                <h4 className={`m-0 text-right ${balance < 0 ? "expeses" : "income"}`}>{balance}</h4>
+            <div className="calculation-container">
+                <h5>Expenses</h5>
+                <p className="expenses">-{totalExpenses}</p>
             </div>
-
-        </div>
-        
-    </footer>
-)}
+            <div className="calculation-container">
+                <h5>Balance</h5>
+                <p className={balance < 0 ? "expenses" : "income"}>{balance}</p>
+            </div>
+        </footer>
+    )}
 
 export default Footer;
