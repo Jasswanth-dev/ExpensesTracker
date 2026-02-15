@@ -9,7 +9,6 @@ import ConfirmationPopup from "../ConfirmationPopup";
 
 import "./index.css";
 
-const STORAGE_KEY = 'expensesTrackerData';
 
 const Budget = ({ categories, setCategories, selectedCategoryId, setSelectedCategoryId }) => {
     const [income, setIncome] = useState(0);
@@ -53,11 +52,6 @@ const Budget = ({ categories, setCategories, selectedCategoryId, setSelectedCate
         setIncome(totalIncome);
         setExpenses(totalExpenses);
         setBalance(totalBalance);
-    };
-
-    const findItem = (categoryId, itemId) => {
-        const category = categories.find(cat => cat.id === categoryId);
-        return category ? category.items.find(item => item.id === itemId) : null;
     };
 
     const updateItemProperty = (categoryId, itemId, property, value) => {
